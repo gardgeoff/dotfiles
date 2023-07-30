@@ -23,6 +23,9 @@ vim.keymap.set('v', 'p', '"_dP')
 vim.keymap.set('i', ';;', '<Esc>A;')
 vim.keymap.set('i', ',,', '<Esc>A,')
 
+-- Remap Esc to Ctrl + C
+vim.keymap.set('n', 'C-c', '<Esc>')
+
 -- Clear search highlighting
 vim.keymap.set('n', '<Leader>H', ':nohlsearch<CR>')
 

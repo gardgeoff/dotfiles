@@ -183,6 +183,7 @@ use({
 use({
   'akinsho/bufferline.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
+  after = 'vim-hybrid-material',
   config = function()
     require('user.plugins.bufferline')
   end,
@@ -201,9 +202,10 @@ use({
 use({
   'glepnir/dashboard-nvim',
   config = function()
-    require('user.plugins.dashboard')
-  end,
+    require('user/plugins/dashboard-nvim')
+  end
 })
+
 
 if packer_bootstrap then
     require('packer').sync()
