@@ -39,3 +39,6 @@ vim.keymap.set('n', '<A-k>', ':move .-2<CR>==gi')
 vim.keymap.set('n', '<A-j>', ':move .+1<CR>==gi')
 vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv-gv")
 vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv-gv")
+
+-- Git keybinds
+vim.keymap.set('n', 'gB', ':G blame<CR>')

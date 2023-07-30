@@ -206,6 +206,26 @@ use({
   end
 })
 
+--- Some git features
+use({
+  'lewis6991/gitsigns.nvim',
+  requires = 'nvim-lua/plenary.nvim',
+  config = function()
+    require('gitsigns').setup({
+      current_line_blame = true,
+      sign_priority = 20,
+      on_attach = function(bufnr)
+        vim.keymap.set('n', 'gb', ':Gitsigns blame_line<CR>')
+      end,
+    })
+  end,
+})
+
+-- Git commands
+use({
+    'tpope/vim-fugitive',
+    requries = 'tpope/vim-rhubarb',
+})
 
 if packer_bootstrap then
     require('packer').sync()
