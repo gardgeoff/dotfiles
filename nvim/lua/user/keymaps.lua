@@ -42,3 +42,7 @@ vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv-gv")
 
 -- Git keybinds
 vim.keymap.set('n', 'gB', ':G blame<CR>')
+
+-- Packer Commands
+vim.keymap.set('n', 'pc', ':PackerCompile<CR>')
+vim.keymap.set('n', 'ps', ':PackerSync<CR>')
