@@ -50,6 +50,8 @@ vim.opt.clipboard = 'unnamedplus'
 -- Ask for confirm when quit
 vim.opt.confirm = true
 
+vim.opt.signcolumn = 'yes:2'
+
 -- Persistent undo
 vim.opt.undofile = true
 -- Automatic backup of file
