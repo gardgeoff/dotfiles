@@ -25,9 +25,9 @@ local use = require('packer').use
 
 -- Hybrid material theme
 use({
-    'kristijanhusak/vim-hybrid-material',
+    'jessarcher/onedark.nvim',
     config = function()
-      vim.cmd('colorscheme hybrid_material')
+      vim.cmd('colorscheme onedark')
       -- Hide the characters in FloatBorder
       vim.api.nvim_set_hl(0, 'FloatBorder', {
           fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
@@ -46,7 +46,7 @@ use({
           bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
         })
 
-      vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
+      -- vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
     end
 })
 
@@ -182,7 +182,7 @@ use({
 use({
   'akinsho/bufferline.nvim',
   requires = 'kyazdani42/nvim-web-devicons',
-  after = 'vim-hybrid-material',
+  after = 'onedark.nvim',
   config = function()
     require('user.plugins.bufferline')
   end,
@@ -262,7 +262,7 @@ use({
     'williamboman/mason-lspconfig.nvim',
   },
   config = function()
-    require('user/plugins/lspconfig')
+    require('user.plugins.lspconfig')
   end,
 })
 

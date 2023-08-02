@@ -54,5 +54,9 @@ vim.opt.confirm = true
 vim.opt.undofile = true
 -- Automatic backup of file
 vim.opt.backup = true
+
 -- Dont use current directory for backups
 vim.opt.backupdir:remove('.')
+
+-- Turn on lsp debugging
+vim.lsp.set_log_level("debug")

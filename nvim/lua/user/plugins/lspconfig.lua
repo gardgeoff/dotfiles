@@ -1,20 +1,18 @@
 -- setup mason to automatically install lsp servers
 require('mason').setup()
-require('mason-lspconfig').setup({ automatic_installation = true })
+require('mason-lspconfig').setup{ automatic_installation = true }
 
 -- PHP
-require('lspconfig').intelephense.setup({})
+require'lspconfig'.intelephense.setup{}
 
 -- Javascript with volar
---
-require('lspconfig').volar.setup({
+require'lspconfig'.volar.setup{
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
-})
+}
 
--- Tailwind
-require('lspconfig').tailwindcss.setup({})
+require'lspconfig'.tailwindcss.setup{}
 
---Keymaps
+-- keymaps
 vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
