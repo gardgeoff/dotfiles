@@ -148,14 +148,13 @@ use({
 use({
   'nvim-telescope/telescope.nvim',
   requires = {
-    'nvim-lua/plenary.nvim',
-    'kyazdani42/nvim-web-devicons',
-    'nvim-telescope/telescope-live-grep-args.nvim',
+    { 'nvim-lua/plenary.nvim' },
+    { 'kyazdani42/nvim-web-devicons' },
     { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+    { 'nvim-telescope/telescope-live-grep-args.nvim' },
   },
-
   config = function()
-    require('user/plugins/telescope')
+    require('user.plugins.telescope')
   end,
 })
 
@@ -232,13 +231,27 @@ use({
     config = function()
       vim.g.floaterm_width = 0.9
       vim.g.floaterm_height = 0.8
-      vim.keymap.set('n', '<F1>', ':FloatermToggle<CR>')
-      vim.keymap.set('t', '<F1>', '<C-\\><C-n>:FloatermToggle<CR>')
+      vim.keymap.set('n', '<C-t>', ':FloatermToggle<CR>')
+      vim.keymap.set('t', '<C-t>', '<C-\\><C-n>:FloatermToggle<CR>')
       vim.cmd([[
         highlight link Floaterm CursorLine
         highlight link FloatermBorder CursorLineBg
       ]])
     end
+})
+
+-- Syntax highlighting
+use({
+  'nvim-treesitter/nvim-treesitter',
+  run = ':TSUpdate',
+  requires = {
+    'nvim-treesitter/playground',
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'JoosepAlviste/nvim-ts-context-commentstring',
+  },
+  config = function()
+    require('user.plugins.treesitter')
+  end,
 })
 
 if packer_bootstrap then
