@@ -262,7 +262,7 @@ use({
     'williamboman/mason-lspconfig.nvim',
   },
   config = function()
-    require('user.plugins.lspconfig')
+    require('user/plugins/lspconfig')
   end,
 })
 

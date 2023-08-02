@@ -6,7 +6,7 @@ require('mason-lspconfig').setup({ automatic_installation = true })
 require('lspconfig').intelephense.setup({})
 
 -- Javascript with volar
-
+--
 require('lspconfig').volar.setup({
   filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'}
 })
