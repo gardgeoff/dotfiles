@@ -26,6 +26,32 @@ require('lspconfig').jsonls.setup({
   }
 })
 
+-- emmet
+require('lspconfig').emmet_ls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
+
+--null-ls for linting
+require('null-ls').setup({
+  sources = {
+    require('null-ls').builtins.diagnostics.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({ '.eslintrc.js' })
+      end,
+    }),
+    require('null-ls').builtins.diagnostics.trail_space.with({ disabled_filetypes = { 'NvimTree' } }),
+    require('null-ls').builtins.formatting.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({ '.eslintrc.js' })
+      end,
+    }),
+    require('null-ls').builtins.formatting.prettierd,
+  },
+})
+
+require('mason-null-ls').setup({ automatic_installation = true })
+
 -- keymaps
 vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
@@ -37,6 +63,9 @@ vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
 -- for php this feature is only available with intelephense premiumn
 vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
+-- Commands
+-- vim.api.nvim_create_user_command('Format', vim.lsp.buf.formatting, {})
+vim.api.nvim_create_user_command('Format', 'vim.lsp.buf.formatting', {})
 vim.diagnostic.config({
     virtual_text = false,
     float = {

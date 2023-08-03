@@ -25,9 +25,9 @@ local use = require('packer').use
 
 -- Hybrid material theme
 use({
-    'jessarcher/onedark.nvim',
+    'AlexvZyl/nordic.nvim',
     config = function()
-      vim.cmd('colorscheme onedark')
+      vim.cmd('colorscheme nordic')
       -- Hide the characters in FloatBorder
       vim.api.nvim_set_hl(0, 'FloatBorder', {
           fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
@@ -46,7 +46,7 @@ use({
           bg = vim.api.nvim_get_hl_by_name('CursorLine', true).background,
         })
 
-      -- vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
+      vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
     end
 })
 
@@ -181,8 +181,8 @@ use({
 
 use({
   'akinsho/bufferline.nvim',
-  requires = 'kyazdani42/nvim-web-devicons',
-  after = 'onedark.nvim',
+  requires = 'kyaodani42/nvim-web-devicons',
+  after = 'nordic.nvim',
   config = function()
     require('user.plugins.bufferline')
   end,
@@ -261,6 +261,8 @@ use({
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'b0o/schemastore.nvim',
+    'jose-elias-alvarez/null-ls.nvim',
+    'jayp0521/mason-null-ls.nvim',
   },
   config = function()
     require('user.plugins.lspconfig')
@@ -282,6 +284,8 @@ use({
     require('user/plugins/cmp')
   end,
 })
+
+--PHP reafactoring tools
 
 if packer_bootstrap then
     require('packer').sync()
