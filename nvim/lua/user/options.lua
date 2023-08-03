@@ -18,6 +18,7 @@ vim.opt.relativenumber = true
 
 -- complete the longest common match, and llow tabbing the ressults to fully complete them
 vim.opt.wildmode = 'longest:full,full'
+vim.opt.completeopt = 'menuone,longest,preview'
 
 vim.opt.title = true
 vim.opt.mouse = 'a'
@@ -62,3 +63,6 @@ vim.opt.backupdir:remove('.')
 
 -- Turn on lsp debugging
 vim.lsp.set_log_level("debug")
+
+-- Remove vertical bars
+vim.opt.colorcolumn=''
