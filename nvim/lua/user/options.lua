@@ -64,5 +64,4 @@ vim.opt.backupdir:remove('.')
 -- Turn on lsp debugging
 vim.lsp.set_log_level("debug")
 
--- Remove vertical bars
-vim.opt.colorcolumn=''
+vim.opt.list = false

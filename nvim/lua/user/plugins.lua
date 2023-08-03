@@ -28,6 +28,7 @@ use({
     'AlexvZyl/nordic.nvim',
     config = function()
       vim.cmd('colorscheme nordic')
+      vim.cmd('highlight clear ColorColumn')
       -- Hide the characters in FloatBorder
       vim.api.nvim_set_hl(0, 'FloatBorder', {
           fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
@@ -286,6 +287,15 @@ use({
 })
 
 --PHP reafactoring tools
+use({
+  'phpactor/phpactor',
+  ft = 'php',
+  run = 'composer install --no-dev --optimize-autoloader',
+  config = function()
+    vim.keymap.set('n', '<Leader>pm', ':PhpactorContextMenu<CR>')
+    vim.keymap.set('n', '<Leader>pn', ':PhpactorClassNew<CR>')
+  end,
+})
 
 if packer_bootstrap then
     require('packer').sync()
