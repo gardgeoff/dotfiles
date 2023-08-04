@@ -25,10 +25,9 @@ local use = require('packer').use
 
 -- Hybrid material theme
 use({
-    'AlexvZyl/nordic.nvim',
+    'catppuccin/nvim',
     config = function()
-      vim.cmd('colorscheme nordic')
-      vim.cmd('highlight clear ColorColumn')
+      vim.cmd('colorscheme catppuccin-mocha')
       -- Hide the characters in FloatBorder
       vim.api.nvim_set_hl(0, 'FloatBorder', {
           fg = vim.api.nvim_get_hl_by_name('NormalFloat', true).background,
@@ -79,7 +78,7 @@ use('sheerun/vim-polyglot')
 -- Navigate seamlessly between vim windows and tmux panes
 use('christoomey/vim-tmux-navigator')
 
--- Jump to the last location when opening a file.
+-- Jump to the last loccatppuccin/nvimation when opening a file.
 use('farmergreg/vim-lastplace')
 
 -- Enable * searching with visually selected text.
@@ -183,7 +182,6 @@ use({
 use({
   'akinsho/bufferline.nvim',
   requires = 'kyaodani42/nvim-web-devicons',
-  after = 'nordic.nvim',
   config = function()
     require('user.plugins.bufferline')
   end,
