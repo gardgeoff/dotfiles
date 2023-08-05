@@ -299,6 +299,24 @@ use({
   end,
 })
 
+-- Project Configuration
+use({
+  'tpope/vim-projectionist',
+  requires = 'tpope/vim-dispatch',
+  config = function()
+    require('user/plugins/projectionist')
+  end
+})
+
+-- Testing helper
+use({
+  'vim-test/vim-test',
+  config = function()
+    require('user/plugins/vim-test')
+  end,
+})
+
+
 if packer_bootstrap then
     require('packer').sync()
 end

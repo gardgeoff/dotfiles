@@ -15,18 +15,18 @@ db.setup({
     '',
     '',
     '',
-    }, 
+    },
     center = {
-      {
-        icon = '  ',
-        desc = 'New File           ',
-        action = 'enew'
-      },
       {
         icon = '  ',
         desc = 'Find file',
         shortcut = 'SPC f',
         action = 'Telescope find_files'
+      },
+      {
+        icon = '  ',
+        desc = 'New File           ',
+        action = 'enew'
       },
       {
         icon = '  ',
