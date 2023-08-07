@@ -35,7 +35,7 @@ require("lspconfig").jsonls.setup({
 --Emmet
 require("lspconfig").emmet_ls.setup({
   capabilities = capabilities,
-  filetypes = { "blade", "html" },
+  filetypes = { "blade", "html", "css", "scss" },
 })
 
 --null-ls for linting
@@ -86,7 +86,8 @@ vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
 vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 vim.keymap.set("n", "gr", ":Telescope lsp_references<CR>")
 vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-vim.keymap.set("n", "F", "<cmd>lua vim.lsp.buf.format()<CR>")
+vim.keymap.set("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
+
 -- for php this feature is only available with intelephense premiumn
 vim.keymap.set("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
