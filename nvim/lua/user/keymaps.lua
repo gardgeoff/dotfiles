@@ -18,7 +18,6 @@ vim.keymap.set('n', 'q:', ':q')
 
 -- Paste replace visual selection without copying
 vim.keymap.set('v', 'p', '"_dP')
-
 -- Easy insertion of trailing ; or , from insert mode
 vim.keymap.set('i', ';;', '<Esc>A;')
 vim.keymap.set('i', ',,', '<Esc>A,')

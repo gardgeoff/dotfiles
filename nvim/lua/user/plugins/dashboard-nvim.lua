@@ -46,7 +46,7 @@ db.setup({
 })
 vim.cmd([[
   augroup DashboardHighlights
-    autocmd ColorScheme * highlight DashboardHeader guifg=#6272a4
+    autocmd ColorScheme * highlight DashboardHeader guifg=#89B4FA
     autocmd ColorScheme * highlight DashboardCenter guifg=#f8f8f2
     autocmd ColorScheme * highlight DashboardShortcut guifg=#bd93f9
     autocmd ColorScheme * highlight DashboardFooter guifg=#6272a4

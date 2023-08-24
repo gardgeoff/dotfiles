@@ -127,15 +127,15 @@ use({
 
 -- Fuzzy finder
 use({
-  "nvim-telescope/telescope.nvim",
+  'nvim-telescope/telescope.nvim',
   requires = {
-    { "nvim-lua/plenary.nvim" },
-    { "kyazdani42/nvim-web-devicons" },
-    { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
-    { "nvim-telescope/telescope-live-grep-args.nvim" },
+    'nvim-lua/plenary.nvim',
+    'kyazdani42/nvim-web-devicons',
+    'nvim-telescope/telescope-live-grep-args.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
   },
   config = function()
-    require("user.plugins.telescope")
+    require('user/plugins/telescope')
   end,
 })
 
@@ -274,6 +274,7 @@ use({
   config = function()
     vim.keymap.set("n", "<Leader>pm", ":PhpactorContextMenu<CR>")
     vim.keymap.set("n", "<Leader>pn", ":PhpactorClassNew<CR>")
+    vim.keymap.set("n", "<Leader>i", ":PhpactorImportClass<CR>")
   end,
 })
 
@@ -302,6 +303,9 @@ use({
     require("user/plugins/vim-blade")
   end,
 })
+
+-- Copilot
+-- use({"github/copilot.vim"})
 
 if packer_bootstrap then
   require("packer").sync()
