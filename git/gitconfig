@@ -55,8 +55,6 @@
 
 [color]
     ui = auto
-[commit]
-    gpgsign = true
 [core]
     editor = nvim
     excludesfile = ~/.gitignore_global
@@ -88,3 +86,6 @@
     rebase = false
 [init]
     defaultBranch = main
+[user]
+	email = gardgeoff@gmail.com
+	name = Geoff Gard
