@@ -1,24 +1,30 @@
-snippet met "public method"
-    public function ${1}(${2}): void
-    {
-        ${0}
-    }
+snippet pubf "public method"
+	public function ${1}(${2}): $3
+	{
+		${0}
+	}
 
-snippet pmet "protected method"
-    protected function ${1}(${2}): void
-    {
-        ${0}
-    }
+snippet prof "protected method"
+	protected function ${1}(${2}): $3
+	{
+		${0}
+	}
 
-snippet pvmet "private method"
-    private function ${1}(${2}): void
-    {
-        ${0}
-    }
+snippet prif "private method"
+	protected function ${1}(${2}): $3
+	{
+		${0}
+	}
 
-snippet test "test function"
-    public function test${1}(${2}): void
-    {
-        ${0}
-    }
+snippet testt "test method (prefix)"
+	public function test_${1}()
+	{
+		${0}
+	}
 
+snippet testa "test method (annotation)"
+	/** @test */
+	public function ${1}()
+	{
+		${0}
+	}

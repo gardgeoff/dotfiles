@@ -1,47 +1,52 @@
--- Set Space for leader
+-- Space is my leader.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- When text is wrapped, move by terminal rows, not lines, unelss a count is provided.
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true})
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true})
+-- Quickly clear search highlighting.
+vim.keymap.set('n', '<leader>k', ':nohlsearch<CR>')
 
--- Reselect visual selection after indeinting
+-- Close all open buffers.
+vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>')
+
+-- Allow gf to open non-existent files.
+vim.keymap.set('', 'gf', ':edit <cfile><CR>')
+
+-- Reselect visual selection after indenting.
 vim.keymap.set('v', '<', '<gv')
 vim.keymap.set('v', '>', '>gv')
 
--- Maintain cursor pos after yanking visual selection
+-- Maintain the cursor position when yanking a visual selection.
+-- http://ddrscott.github.io/blog/2016/yank-without-jank/
 vim.keymap.set('v', 'y', 'myy`y')
+vim.keymap.set('v', 'Y', 'myY`y')
 
--- Disable :q typo
-vim.keymap.set('n', 'q:', ':q')
+-- When text is wrapped, move by terminal rows, not lines, unless a count is provided.
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Paste replace visual selection without copying
+-- Paste replace visual selection without copying it.
 vim.keymap.set('v', 'p', '"_dP')
--- Easy insertion of trailing ; or , from insert mode
-vim.keymap.set('i', ';;', '<Esc>A;')
-vim.keymap.set('i', ',,', '<Esc>A,')
 
--- Remap Esc to Ctrl + C
-vim.keymap.set('n', 'C-c', '<Esc>')
+-- Easy insertion of a trailing ; or , from insert mode.
+vim.keymap.set('i', ';;', '<Esc>A;<Esc>')
+vim.keymap.set('i', ',,', '<Esc>A,<Esc>')
 
--- Clear search highlighting
-vim.keymap.set('n', '<Leader>H', ':nohlsearch<CR>')
+-- Open the current file in the default program (on Mac this should just be just `open`).
+vim.keymap.set('n', '<leader>x', ':!xdg-open %<cr><cr>')
 
---Open current file in default program
-vim.keymap.set('n', '<Leader>x', ':!wsl-open %<CR><CR>')
+-- Disable annoying command line thing.
+vim.keymap.set('n', 'q:', ':q<CR>')
 
--- Some cool line manipulation
-vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
-vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
-vim.keymap.set('n', '<A-k>', ':move .-2<CR>==gi')
-vim.keymap.set('n', '<A-j>', ':move .+1<CR>==gi')
-vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv-gv")
-vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv-gv")
+-- Resize with arrows.
+vim.keymap.set('n', '<C-Up>', ':resize +2<CR>')
+vim.keymap.set('n', '<C-Down>', ':resize -2<CR>')
+vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>')
+vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
 
--- Git keybinds
-vim.keymap.set('n', 'gB', ':G blame<CR>')
-
--- Packer Commands
-vim.keymap.set('n', 'pc', ':PackerCompile<CR>')
-vim.keymap.set('n', 'ps', ':PackerSync<CR>')
+-- Move text up and down
+-- vim.keymap.set('i', '<A-j>', '<Esc>:move .+1<CR>==gi')
+-- vim.keymap.set('i', '<A-k>', '<Esc>:move .-2<CR>==gi')
+-- vim.keymap.set('n', '<A-j>', ':move .+1<CR>==')
+-- vim.keymap.set('n', '<A-k>', ':move .-2<CR>==')
+-- vim.keymap.set('v', '<A-j>', ":move '>+1<CR>gv=gv")
+-- vim.keymap.set('v', '<A-k>', ":move '<-2<CR>gv=gv")

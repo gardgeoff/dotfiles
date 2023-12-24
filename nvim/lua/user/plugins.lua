@@ -1,318 +1,140 @@
-local ensure_packer = function(wg)
-  local fn = vim.fn
-  local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-  if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-    vim.cmd([[packadd packer.nvim]])
-    return true
-  end
-  return false
+-- Bootstrap Lazy
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
+require("lazy").setup({
+  -- Color scheme
+  { import = 'user.plugins.tokyonight' },
 
-require("packer").reset()
-require("packer").init({
-  compile_path = vim.fn.stdpath("data") .. "/site/plugin/packer_compiled.lua",
-  display = {
-    open_fn = function()
-      return require("packer.util").float({ border = "solid" })
-    end,
+  -- Commenting support.
+  { import = 'user.plugins.vim-commentary' },
+
+  -- Add, change, and delete surrounding text.
+  { 'tpope/vim-surround' },
+
+  -- Useful commands like :Rename and :SudoWrite.
+  { 'tpope/vim-eunuch' },
+
+  -- Pairs of handy bracket mappings, like [b and ]b.
+  { 'tpope/vim-unimpaired', event = 'VeryLazy' },
+
+  -- Indent autodetection with editorconfig support.
+  { 'tpope/vim-sleuth' },
+
+  -- Allow plugins to enable repeating of commands.
+  { 'tpope/vim-repeat' },
+
+  -- Navigate seamlessly between Vim windows and Tmux panes.
+  { 'christoomey/vim-tmux-navigator' },
+
+  -- Jump to the last location when opening a file.
+  { 'farmergreg/vim-lastplace' },
+
+  -- Enable * searching with visually selected text.
+  { 'nelstrom/vim-visual-star-search' },
+
+  -- Automatically create parent dirs when saving.
+  { 'jessarcher/vim-heritage' },
+
+  -- Text objects for HTML attributes.
+  { 'whatyouhide/vim-textobj-xmlattr', dependencies = 'kana/vim-textobj-user'  },
+
+  -- Automatically set the working directory to the project root.
+  { import = 'user.plugins.vim-rooter' },
+
+  -- Automatically add closing brackets, quotes, etc.
+  { 'windwp/nvim-autopairs', config = true },
+
+  -- Add smooth scrolling to avoid jarring jumps
+  { 'karb94/neoscroll.nvim', config = true },
+
+  -- All closing buffers without closing the split window.
+  { import = 'user.plugins.bufdelete' },
+
+  -- Split arrays and methods onto multiple lines, or join them back up.
+  { import = 'user.plugins.treesj' },
+
+  -- Automatically fix indentation when pasting code.
+  { import = 'user.plugins.vim-pasta' },
+
+  -- Fuzzy finder
+  { import = 'user.plugins.telescope' },
+
+  -- File tree sidebar
+  { import = 'user.plugins.neo-tree' },
+
+  -- A Status line.
+  { import = 'user.plugins.lualine' },
+
+  -- Display buffers as tabs.
+  { import = 'user.plugins.bufferline' },
+
+  -- Display indentation lines.
+  { import = 'user.plugins.indent-blankline' },
+
+  -- Add a dashboard.
+  { import = 'user.plugins.dashboard-nvim' },
+
+  -- Git integration.
+  { import = 'user.plugins.gitsigns' },
+
+  -- Git commands.
+  { 'tpope/vim-fugitive', dependencies = 'tpope/vim-rhubarb' },
+
+  --- Floating terminal.
+  { import = 'user.plugins.floaterm' },
+
+  -- Improved syntax highlighting
+  { import = 'user.plugins.treesitter' },
+
+  -- Language Server Protocol.
+  { import = 'user.plugins.lspconfig' },
+
+  -- Completion
+  { import = 'user.plugins.cmp' },
+
+  -- PHP Refactoring Tools
+  { import = 'user.plugins.phpactor' },
+
+  -- Project Configuration.
+  { import = 'user.plugins.projectionist' },
+
+  -- Testing helper
+  { import = 'user.plugins.vim-test' },
+
+  -- GitHub Copilot
+  { import = 'user.plugins.copilot' },
+
+  -- Colorize Hex Codes
+  { import = 'user.plugins.colorizer' },
+
+  -- Show file and LSP context in a bar at the top of the screen.
+  { import = 'user.plugins.barbecue' },
+
+  -- Virtual scrollbar
+  { import = 'user.plugins.nvim-scrollbar' },
+
+  -- Highlight occurrences of the word under the cursor.
+  { import = 'user.plugins.illuminate' },
+}, {
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+  install = {
+    colorscheme = { "tokyonight", "habamax" },
   },
 })
-
-local use = require("packer").use
-
--- Theme
-use({
-  "catppuccin/nvim",
-  as = "catpuccin",
-  config = function()
-    require('user/plugins/theme')
-  end,
-})
-
--- Packer can manager itself.
-use("wbthomason/packer.nvim")
-
--- Commenting support
-use("tpope/vim-commentary")
-
--- Add, change, and delete surrounding text.
-use("tpope/vim-surround")
-
--- Useful commands like :Rename and :SudoWrite.
-use("tpope/vim-eunuch")
-
--- Pairs of handy bracket mappings, like [b and ]b.
-use("tpope/vim-unimpaired")
-
--- Indent autodetection with editorconfig support
-use("tpope/vim-sleuth")
-
--- Allow plugins to enable repeating of commands
-use("tpope/vim-repeat")
-
--- Add more languages
-use("sheerun/vim-polyglot")
-
--- Navigate seamlessly between vim windows and tmux panes
-use("christoomey/vim-tmux-navigator")
-
--- Jump to the last loccatppuccin/nvimation when opening a file.
-use("farmergreg/vim-lastplace")
-
--- Enable * searching with visually selected text.
-use("nelstrom/vim-visual-star-search")
-
--- Automatically create parent dirs when saving.
-use("jessarcher/vim-heritage")
-
--- Text objects for HTML attributes.
-use({
-  "whatyouhide/vim-textobj-xmlattr",
-  requires = "kana/vim-textobj-user",
-})
-
--- Automatically set the working directory to project root
-use({
-  "airblade/vim-rooter",
-  setup = function()
-    -- run on vim start
-    vim.g.rooter_manual_only = 1
-  end,
-  config = function()
-    vim.cmd("Rooter")
-  end,
-})
-
--- Automatically add closing brackets, quotes, etc.
-use({
-  "Raimondi/delimitMate",
-})
-
--- Add smooth scrolling
-use({
-  "karb94/neoscroll.nvim",
-  config = function()
-    require("neoscroll").setup()
-  end,
-})
-
--- All closing buffers without closing the split window.
-use({
-  "famiu/bufdelete.nvim",
-  config = function()
-    vim.keymap.set("n", "<Leader>q", ":Bdelete<CR>")
-  end,
-})
-
--- Split arrays and methods onto multiple lines, or join them back up.
-use({
-  "AndrewRadev/splitjoin.vim",
-  config = function()
-    vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
-    vim.g.splitjoin_trailing_comma = 1
-    vim.g.splitjoin_php_method_chain_full = 1
-  end,
-})
-
--- Automatically fix indentation when pasting code.
-use({
-  "sickill/vim-pasta",
-  config = function()
-    vim.g.pasta_disabled_filetypes = { "fugitive" }
-  end,
-})
-
--- Fuzzy finder
-use({
-  'nvim-telescope/telescope.nvim',
-  requires = {
-    'nvim-lua/plenary.nvim',
-    'kyazdani42/nvim-web-devicons',
-    'nvim-telescope/telescope-live-grep-args.nvim',
-    { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-  },
-  config = function()
-    require('user/plugins/telescope')
-  end,
-})
-
--- File tree sidebar
-use({
-  "kyazdani42/nvim-tree.lua",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("user/plugins/nvim-tree")
-  end,
-})
-
--- New status line
-
-use({
-  "nvim-lualine/lualine.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("user.plugins.lualine")
-  end,
-})
-
--- Display buffers as tabs.
-
-use({
-  "akinsho/bufferline.nvim",
-  requires = "kyaodani42/nvim-web-devicons",
-  after = "catpuccin",
-  config = function()
-    require("user.plugins.bufferline")
-  end,
-})
-
--- Display indentation lines
-
-use({
-  "lukas-reineke/indent-blankline.nvim",
-  config = function()
-    require("user.plugins.indent-blankline")
-  end,
-})
-
--- Add a dashboard
-use({
-  "glepnir/dashboard-nvim",
-  config = function()
-    require("user/plugins/dashboard-nvim")
-  end,
-})
-
---- Some git features
-use({
-  "lewis6991/gitsigns.nvim",
-  requires = "nvim-lua/plenary.nvim",
-  config = function()
-    require("gitsigns").setup({
-      current_line_blame = true,
-      sign_priority = 20,
-      on_attach = function(bufnr)
-        vim.keymap.set("n", "gb", ":Gitsigns blame_line<CR>")
-      end,
-    })
-  end,
-})
-
--- Git commands
-use({
-  "tpope/vim-fugitive",
-  requries = "tpope/vim-rhubarb",
-})
-
-use({
-  "voldikss/vim-floaterm",
-  config = function()
-    vim.g.floaterm_width = 0.9
-    vim.g.floaterm_height = 0.8
-    vim.keymap.set("n", "<C-t>", ":FloatermToggle<CR>")
-    vim.keymap.set("t", "<C-t>", "<C-\\><C-n>:FloatermToggle<CR>")
-    vim.cmd([[
-        highlight link Floaterm CursorLine
-        highlight link FloatermBorder CursorLineBg
-      ]])
-  end,
-})
-
--- Syntax highlighting
-use({
-  "nvim-treesitter/nvim-treesitter",
-  run = ":TSUpdate",
-  requires = {
-    "nvim-treesitter/playground",
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    "JoosepAlviste/nvim-ts-context-commentstring",
-  },
-  config = function()
-    require("user.plugins.treesitter")
-  end,
-})
-
--- LSP
-use({
-  "neovim/nvim-lspconfig",
-  requires = {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
-    "b0o/schemastore.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
-    "jayp0521/mason-null-ls.nvim",
-  },
-  config = function()
-    require("user.plugins.lspconfig")
-  end,
-})
-
-use({
-  "hrsh7th/nvim-cmp",
-  requires = {
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lsp-signature-help",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
-    "onsails/lspkind-nvim",
-  },
-  config = function()
-    require("user/plugins/cmp")
-  end,
-})
-
---PHP reafactoring tools
-use({
-  "phpactor/phpactor",
-  ft = "php",
-  run = "composer install --no-dev --optimize-autoloader",
-  config = function()
-    vim.keymap.set("n", "<Leader>pm", ":PhpactorContextMenu<CR>")
-    vim.keymap.set("n", "<Leader>pn", ":PhpactorClassNew<CR>")
-    vim.keymap.set("n", "<Leader>i", ":PhpactorImportClass<CR>")
-  end,
-})
-
--- Project Configuration
-use({
-  "tpope/vim-projectionist",
-  requires = "tpope/vim-dispatch",
-  config = function()
-    require("user/plugins/projectionist")
-  end,
-})
-
--- Testing helper
-use({
-  "vim-test/vim-test",
-  config = function()
-    require("user/plugins/vim-test")
-  end,
-})
-
--- Blade syntax highlighting
-
-use({
-  "jwalton512/vim-blade",
-  config = function()
-    require("user/plugins/vim-blade")
-  end,
-})
-
--- Copilot
--- use({"github/copilot.vim"})
-
-if packer_bootstrap then
-  require("packer").sync()
-end
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])

@@ -1,17 +1,28 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-DOTFILES=$(cd $(dirname "{BASH_SOURCE[0]"}) && pwd)
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-rm -rf $HOME/.tmux.conf
-ln -s $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
-
-mkdir -p $HOME/.local/bin
-
-rm -rf $HOME/.local/bin/t
-ln -s $DOTFILES/scripts/t $HOME/.local/bin/t
-
+# Neovim
 rm -rf $HOME/.config/nvim
 ln -s $DOTFILES/nvim $HOME/.config/nvim
 
+# Tmux
+ln -sf $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
+
+# Git
+ln -sf $DOTFILES/git/gitconfig $HOME/.gitconfig
+ln -sf $DOTFILES/git/gitignore_global $HOME/.gitignore_global
+
+# Phpactor
 rm -rf $HOME/.config/phpactor
-ln -s $DOTFILES/nvim $HOME/.config/phpactor
+ln -s $DOTFILES/phpactor $HOME/.config/phpactor
+
+# Scripts
+mkdir -p $HOME/.local/bin
+
+ln -sf $DOTFILES/scripts/t $HOME/.local/bin/t
+ln -sf $DOTFILES/scripts/deliver $HOME/.local/bin/deliver
+
+# NVM (Node Version Manager)
+mkdir -p $HOME/.nvm
+ln -sf $DOTFILES/nvm/default-packages $HOME/.nvm/default-packages
