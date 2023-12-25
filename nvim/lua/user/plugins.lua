@@ -11,11 +11,10 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
+vim.cmd.colorscheme "catppuccin-mocha"
 require("lazy").setup({
   -- Color scheme
-  { import = 'user.plugins.tokyonight' },
-
+  { import = 'user.plugins.catpuccin' },
   -- Commenting support.
   { import = 'user.plugins.vim-commentary' },
 
@@ -121,9 +120,6 @@ require("lazy").setup({
   -- Show file and LSP context in a bar at the top of the screen.
   { import = 'user.plugins.barbecue' },
 
-  -- Virtual scrollbar
-  { import = 'user.plugins.nvim-scrollbar' },
-
   -- Highlight occurrences of the word under the cursor.
   { import = 'user.plugins.illuminate' },
 }, {
@@ -133,8 +129,5 @@ require("lazy").setup({
   },
   change_detection = {
     notify = false,
-  },
-  install = {
-    colorscheme = { "tokyonight", "habamax" },
   },
 })
