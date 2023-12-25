@@ -11,7 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.cmd.colorscheme "catppuccin-mocha"
 require("lazy").setup({
   -- Color scheme
   { import = 'user.plugins.catpuccin' },
@@ -112,7 +111,7 @@ require("lazy").setup({
   { import = 'user.plugins.vim-test' },
 
   -- GitHub Copilot
-  { import = 'user.plugins.copilot' },
+  -- { import = 'user.plugins.copilot' },
 
   -- Colorize Hex Codes
   { import = 'user.plugins.colorizer' },
