@@ -44,7 +44,6 @@ return {
     source_selector = {
       winbar = true,
       statusline = false,
-      separator = { left = "", right= "" },
       show_separator_on_edge = true,
       highlight_tab = "SidebarTabInactive",
       highlight_tab_active = "SidebarTabActive",
@@ -73,9 +72,9 @@ return {
           ".git",
         },
       },
-      -- follow_current_file = {
-      --   enabled = true,
-      -- },
+      follow_current_file = {
+        enabled = true,
+      },
       group_empty_dirs = false
     },
   },
