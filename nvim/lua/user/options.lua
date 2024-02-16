@@ -38,4 +38,4 @@ vim.opt.redrawtime = 10000 -- Allow more time for loading syntax on large files
 vim.opt.exrc = true
 vim.opt.secure = true
 vim.opt.titlestring = '%f // nvim'
-vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"

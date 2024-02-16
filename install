@@ -26,3 +26,8 @@ ln -sf $DOTFILES/scripts/deliver $HOME/.local/bin/deliver
 # NVM (Node Version Manager)
 mkdir -p $HOME/.nvm
 ln -sf $DOTFILES/nvm/default-packages $HOME/.nvm/default-packages
+
+# Bash
+ln -sf $DOTFILES/bash/bash_aliases $HOME/.bash_aliases
+ln -sf $DOTFILES/bash/bashrc $HOME/.bashrc
+ln -sf $DOTFILES/bash/bash_colors $HOME/.bash_colors
