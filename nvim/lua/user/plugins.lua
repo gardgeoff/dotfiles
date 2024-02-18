@@ -14,13 +14,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   -- Color scheme
-  { import = 'user.plugins.tokyonight' },
+  { import = 'user.plugins.catpuccin' },
 
   -- Commenting support.
   { import = 'user.plugins.vim-commentary' },
 
   -- Add, change, and delete surrounding text.
   { 'tpope/vim-surround' },
+
+  { 'jwalton512/vim-blade' },
 
   -- Useful commands like :Rename and :SudoWrite.
   { 'tpope/vim-eunuch' },
@@ -132,7 +134,7 @@ require("lazy").setup({
   change_detection = {
     notify = false,
   },
-  install = {
-    colorscheme = { "tokyonight", "habamax" },
-  },
+  -- install = {
+  --   colorscheme = { "tokyonight", "habamax" },
+  -- },
 })
