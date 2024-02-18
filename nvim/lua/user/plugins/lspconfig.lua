@@ -121,6 +121,7 @@ return {
             return utils.root_has_file({ '.prettierrc', '.prettierrc.json', '.prettierrc.yml', '.prettierrc.js', 'prettier.config.js' })
           end,
         }),
+        null_ls.builtins.formatting.blade_formatter,
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
