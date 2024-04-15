@@ -100,3 +100,6 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
+. "$HOME/.cargo/env"
+
+export BROWSER=wslview
