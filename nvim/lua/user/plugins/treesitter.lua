@@ -14,14 +14,6 @@ return {
         languages = {
           php_only = '// %s',
           php = '// %s',
-          -- blade = '{{-- %s --}}',
-          -- blade = {
-          --   __default = '{{-- %s --}}',
-          --   html = '{{-- %s --}}',
-          --   blade = '{{-- %s --}}',
-          --   php = '// %s',
-          --   php_only = '// %s',
-          -- }
         },
         custom_calculation = function (node, language_tree)
           -- print(language_tree:lang())
