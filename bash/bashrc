@@ -57,25 +57,23 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
     else
-	color_prompt=
+    color_prompt=
     fi
 fi
 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
+
 if [ "$color_prompt" = yes ]; then
- PS1="${GREEN} "
- PS1="${PS1} ${BLUE} \W"
- PS1="${PS1} ${RED}$(parse_git_branch)"
- PS1="${PS1} ${RESTORE}\n "
+  PS1="${GREEN}  ${BLUE} \W ${RED}\$(parse_git_branch)${RESTORE}\n "
 else
- PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$(parse_git_branch)\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$(parse_git_branch)\$ '
 fi
 
 # If this is an xterm set the title to user@host:dir
@@ -103,3 +101,4 @@ export PATH="$PATH:$HOME/.config/composer/vendor/bin"
 . "$HOME/.cargo/env"
 
 export BROWSER=wslview
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

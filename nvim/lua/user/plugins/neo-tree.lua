@@ -43,6 +43,10 @@ return {
     },
     source_selector = {
       winbar = true,
+      sources = {
+        { source = 'filesystem' },
+        { source = 'buffers' },
+      },
       statusline = false,
       show_separator_on_edge = true,
       highlight_tab = "SidebarTabInactive",
