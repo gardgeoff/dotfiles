@@ -31,7 +31,6 @@
 [core]
     editor = nvim
     excludesfile = ~/.gitignore_global
-    pager = delta
 [include]
     path = ~/.gitconfig_local
 [push]

@@ -13,6 +13,9 @@ ln -sf $DOTFILES/tmux/tmux.conf $HOME/.tmux.conf
 ln -sf $DOTFILES/git/gitconfig $HOME/.gitconfig
 ln -sf $DOTFILES/git/gitignore_global $HOME/.gitignore_global
 
+#LazyGit
+ln -sf $DOTFILES/lazygit/config.yml $HOME/.config/lazygit/config.yml
+
 # Phpactor
 rm -rf $HOME/.config/phpactor
 ln -s $DOTFILES/phpactor $HOME/.config/phpactor

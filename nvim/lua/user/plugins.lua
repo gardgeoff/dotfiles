@@ -110,7 +110,7 @@ require("lazy").setup({
   { import = 'user.plugins.phpactor' },
 
   -- Project Configuration.
-  { import = 'user.plugins.projectionist' },
+  -- { import = 'user.plugins.projectionist' },
 
   -- Testing helper
   { import = 'user.plugins.vim-test' },

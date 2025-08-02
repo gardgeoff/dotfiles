@@ -1,0 +1,7 @@
+gui:
+  border: single
+  theme:
+    inactiveBorderColor:
+      - '#b4befe'
+    activeBorderColor:
+      - '#a6e3a1'

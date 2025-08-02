@@ -65,6 +65,8 @@ return {
       },
     },
     window = {
+      width = 30,
+      auto_expand_width = true,
       mappings = {
         ["<cr>"] = "open_with_window_picker",
       },
