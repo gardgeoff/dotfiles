@@ -1,5 +1,5 @@
 snippet met "public method"
-	public function ${1}(${2}): $3
+	public function ${1}(${2}): $3void
 	{
 		${0}
 	}
@@ -11,7 +11,7 @@ snippet pmet "protected method"
 	}
 
 snippet pvmet "private method"
-	protected function ${1}(${2}): $3
+	private function ${1}(${2}): $3
 	{
 		${0}
 	}
@@ -22,9 +22,9 @@ snippet test "test method (prefix)"
 		${0}
 	}
 
-snippet testa "test method (annotation)"
-	/** @test */
-	public function ${1}()
-	{
-		${0}
-	}
+snippet provider "test provider"
+    public static function ${1}provider()
+    {
+        return [
+        ];
+    }

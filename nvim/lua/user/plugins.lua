@@ -22,6 +22,7 @@ require("lazy").setup({
   -- Add, change, and delete surrounding text.
   { 'tpope/vim-surround' },
 
+ -- Support for blade directives
   { 'jwalton512/vim-blade' },
 
   -- Useful commands like :Rename and :SudoWrite.
