@@ -1,5 +1,6 @@
 gui:
   border: single
+  statusPanelView: 'allBranchesLog'
   theme:
     inactiveBorderColor:
       - '#b4befe'
