@@ -126,6 +126,8 @@ require("lazy").setup({
 
   -- Highlight occurrences of the word under the cursor.
   { import = 'user.plugins.illuminate' },
+  -- copilot
+  { import = 'user.plugins.copilot' },
   {
     'mrcjkb/rustaceanvim',
     version = '^4', -- Recommended
