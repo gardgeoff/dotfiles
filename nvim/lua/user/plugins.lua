@@ -1,19 +1,19 @@
 -- Bootstrap Lazy
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable",
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
     lazypath,
   })
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  -- Color scheme
+require('lazy').setup({
+
   { import = 'user.plugins.catpuccin' },
 
   -- Commenting support.
@@ -22,7 +22,7 @@ require("lazy").setup({
   -- Add, change, and delete surrounding text.
   { 'tpope/vim-surround' },
 
- -- Support for blade directives
+  -- Support for blade directives
   { 'jwalton512/vim-blade' },
 
   -- Useful commands like :Rename and :SudoWrite.
@@ -50,7 +50,7 @@ require("lazy").setup({
   { 'jessarcher/vim-heritage' },
 
   -- Text objects for HTML attributes.
-  { 'whatyouhide/vim-textobj-xmlattr', dependencies = 'kana/vim-textobj-user'  },
+  { 'whatyouhide/vim-textobj-xmlattr', dependencies = 'kana/vim-textobj-user' },
 
   -- Automatically set the working directory to the project root.
   { import = 'user.plugins.vim-rooter' },
@@ -115,6 +115,8 @@ require("lazy").setup({
   -- Testing helper
   { import = 'user.plugins.vim-test' },
 
+  { import = 'user.plugins.conform' },
+
   -- Colorize Hex Codes
   { import = 'user.plugins.colorizer' },
 
@@ -128,17 +130,16 @@ require("lazy").setup({
   { import = 'user.plugins.illuminate' },
   -- copilot
   { import = 'user.plugins.copilot' },
-  {
-    'mrcjkb/rustaceanvim',
-    version = '^4', -- Recommended
-    lazy = false, -- This plugin is already lazy
-  },
+
+  -- Color scheme
+  { import = 'user.plugins.tokyonight' },
+  { import = 'user.plugins.poimandres' },
 }, {
   checker = {
     enabled = true,
     notify = false,
   },
-  easing_function = "cubic",
+  easing_function = 'cubic',
   change_detection = {
     notify = false,
   },
