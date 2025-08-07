@@ -130,10 +130,9 @@ require('lazy').setup({
   { import = 'user.plugins.illuminate' },
   -- copilot
   { import = 'user.plugins.copilot' },
+  { import = 'user.plugins.copilot-chat' },
 
   -- Color scheme
-  { import = 'user.plugins.tokyonight' },
-  { import = 'user.plugins.poimandres' },
 }, {
   checker = {
     enabled = true,
