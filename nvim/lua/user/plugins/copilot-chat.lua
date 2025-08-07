@@ -11,7 +11,7 @@ return {
       width = 90,
       height = 30,
       border = 'none',
-      row = 10,
+      row = 5,
       zindex = 100,
     },
     headers = {
