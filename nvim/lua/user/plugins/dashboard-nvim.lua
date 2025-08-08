@@ -1,3 +1,32 @@
+local header_ascii = {
+
+  '                                               ',
+  '                                               ',
+  '             *     ,MMM8&&&.            *      ',
+  '                  MMMM88&&&&&    .             ',
+  '                 MMMM88&&&&&&&                 ',
+  '     *           MMM88&&&&&&&&                 ',
+  '                 MMM88&&&&&&&&                 ',
+  "                 'MMM88&&&&&&'                 ",
+  "                   'MMM8&&&'      *            ",
+  '          |\\___/|                              ',
+  "          )     (             .              ' ",
+  '         =\\     /=                             ',
+  '           )===(       *                       ',
+  '          /     \\                              ',
+  '          |     |                              ',
+  '         /       \\                             ',
+  '         \\       /                             ',
+  '  _/\\_/\\_/\\__  _/_/\\_/\\_/\\_/\\_/\\_/\\_/\\_/\\_/\\_/\\_ ',
+  '  |  |  |  |( (  |  |  |  |  |  |  |  |  |  |  |',
+  '  |  |  |  | ) ) |  |  |  |  |  |  |  |  |  |  |',
+  '  |  |  |  |(_(  |  |  |  |  |  |  |  |  |  |  |',
+  '  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |',
+  '  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |',
+  '                                                ',
+  '                                                ',
+  '                                                ',
+}
 return {
   'nvimdev/dashboard-nvim',
   event = 'VimEnter',
@@ -5,23 +34,7 @@ return {
     require('dashboard').setup({
       theme = 'doom',
       config = {
-        header = {
-          '',
-          '',
-          '',
-          '',
-          '',
-          '',
-          ' ██████╗ ███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗',
-          '██╔════╝ ██╔════╝██╔═══██╗██║   ██║██║████╗ ████║',
-          '██║  ███╗█████╗  ██║   ██║██║   ██║██║██╔████╔██║',
-          '██║   ██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║',
-          '╚██████╔╝███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║',
-          ' ╚═════╝ ╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝',
-          '',
-          '',
-          '',
-        },
+        header = header_ascii,
         center = {
           { icon = ' ', desc = 'New file', action = 'enew' },
           { icon = '󰱽 ', desc = 'Find file               ', key = 'Space + p', action = 'Telescope find_files' },
@@ -37,7 +50,7 @@ return {
       },
     })
 
-    vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = '#89b4fa' })
+    vim.api.nvim_set_hl(0, 'DashboardHeader', { fg = '#fab387' })
     vim.api.nvim_set_hl(0, 'DashboardDesc', { fg = '#89b4fa' })
     vim.api.nvim_set_hl(0, 'DashboardIcon', { fg = '#f5c2e7' })
     vim.api.nvim_set_hl(0, 'DashboardKey', { fg = '#fab387' })
