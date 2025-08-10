@@ -3,7 +3,8 @@ return {
   opts = {
     formatters_by_ft = {
       php = { 'pint' },
-      blade = { 'pint' },
+      blade = { 'blade_formatter' },
+      html = { 'prettierd' },
       javascript = { 'eslint_d', stop_after_first = true },
       typescript = { 'eslint_d', stop_after_first = true },
       typescriptreact = { 'eslint_d', stop_after_first = true },

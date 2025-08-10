@@ -33,6 +33,8 @@ alias vim='nvim'
 
 # alias for tmux to load correct colors
 alias tmux="TERM=screen-256color-bce tmux"
+alias tma="tmux attach -t"
+alias tmn="tmux new -s"
 
 
 # Laravel alias
