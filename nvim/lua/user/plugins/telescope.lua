@@ -4,17 +4,48 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons',
     'nvim-telescope/telescope-live-grep-args.nvim',
+    'nvim-telescope/telescope-ui-select.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   keys = {
-    { '<leader>p', function() require('telescope.builtin').find_files() end },
-    { '<leader>P', function() require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' }) end },
-    { '<leader>b', function() require('telescope.builtin').buffers() end },
-    { '<leader>g', function() require('telescope').extensions.live_grep_args.live_grep_args() end },
-    { '<leader>h', function() require('telescope.builtin').oldfiles() end },
-    { '<leader>s', function() require('telescope.builtin').lsp_document_symbols() end },
+    {
+      '<leader>p',
+      function()
+        require('telescope.builtin').find_files()
+      end,
+    },
+    {
+      '<leader>P',
+      function()
+        require('telescope.builtin').find_files({ no_ignore = true, prompt_title = 'All Files' })
+      end,
+    },
+    {
+      '<leader>b',
+      function()
+        require('telescope.builtin').buffers()
+      end,
+    },
+    {
+      '<leader>g',
+      function()
+        require('telescope').extensions.live_grep_args.live_grep_args()
+      end,
+    },
+    {
+      '<leader>h',
+      function()
+        require('telescope.builtin').oldfiles()
+      end,
+    },
+    {
+      '<leader>s',
+      function()
+        require('telescope.builtin').lsp_document_symbols()
+      end,
+    },
   },
-  config = function ()
+  config = function()
     local actions = require('telescope.actions')
 
     require('telescope').setup({
@@ -39,11 +70,14 @@ return {
         file_ignore_patterns = { '.git/' },
       },
       extensions = {
+        ['ui-select'] = {
+          require('telescope.themes').get_dropdown(),
+        },
         live_grep_args = {
           mappings = {
             i = {
-              ["<C-k>"] = require("telescope-live-grep-args.actions").quote_prompt(),
-              ["<C-i>"] = require("telescope-live-grep-args.actions").quote_prompt({ postfix = " --iglob " }),
+              ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
+              ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt({ postfix = ' --iglob ' }),
             },
           },
         },
@@ -74,5 +108,6 @@ return {
     })
 
     require('telescope').load_extension('fzf')
+    require('telescope').load_extension('ui-select')
   end,
 }

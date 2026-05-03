@@ -14,7 +14,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 
-  { import = 'user.plugins.catpuccin' },
+  -- Theme
+  { import = 'user.plugins.slime' },
 
   -- Commenting support.
   { import = 'user.plugins.vim-commentary' },
@@ -55,7 +56,9 @@ require('lazy').setup({
   -- Automatically set the working directory to the project root.
   { import = 'user.plugins.vim-rooter' },
 
-  -- Automatically add closing brackets, quotes, etc.
+  { import = 'user.plugins.rainbow-delimiters' },
+
+  -- Automatically add closing brackets, quotes, etc.plugins
   { 'windwp/nvim-autopairs', config = true },
 
   -- Add smooth scrolling to avoid jarring jumps
@@ -128,9 +131,6 @@ require('lazy').setup({
 
   -- Highlight occurrences of the word under the cursor.
   { import = 'user.plugins.illuminate' },
-  -- copilot
-  { import = 'user.plugins.copilot' },
-  { import = 'user.plugins.copilot-chat' },
 
   -- Color scheme
 }, {

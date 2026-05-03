@@ -1,5 +1,3 @@
--- Language Server Protocol
-
 return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
@@ -9,7 +7,6 @@ return {
     'b0o/schemastore.nvim',
   },
   config = function()
-    -- Setup Mason to automatically install LSP servers
     require('mason').setup({
       ui = {
         height = 0.8,
@@ -19,21 +16,16 @@ return {
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-    -- PHP
-    require('lspconfig').intelephense.setup({
-      commands = {
-        IntelephenseIndex = {
-          function()
-            vim.lsp.buf.execute_command({ command = 'intelephense.index.workspace' })
-          end,
-        },
-      },
-      capabilities = capabilities
+    vim.lsp.config('intelephense', {
+      on_attach = function(client, bufnr)
+        vim.api.nvim_buf_create_user_command(bufnr, 'IntelephenseIndex', function()
+          vim.lsp.buf.execute_command({ command = 'intelephense.index.workspace' })
+        end, {})
+      end,
+      capabilities = capabilities,
     })
 
-
-    -- Vue, JavaScript, TypeScript
-    require('lspconfig').volar.setup({
+    vim.lsp.config('volar', {
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
@@ -41,32 +33,25 @@ return {
       capabilities = capabilities,
     })
 
-    require('lspconfig').ts_ls.setup({
+    vim.lsp.config('ts_ls', {
       init_options = {
         plugins = {
           {
-            name = "@vue/typescript-plugin",
-            location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-            languages = {"javascript", "typescript", "vue"},
+            name = '@vue/typescript-plugin',
+            location = '/usr/local/lib/node_modules/@vue/typescript-plugin',
+            languages = { 'javascript', 'typescript', 'vue' },
           },
         },
       },
       filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "vue",
+        'javascript', 'javascriptreact', 'javascript.jsx',
+        'typescript', 'typescriptreact', 'typescript.tsx', 'vue',
       },
     })
 
-    -- Tailwind CSS
-    require('lspconfig').tailwindcss.setup({ capabilities = capabilities })
+    vim.lsp.config('tailwindcss', { capabilities = capabilities })
 
-    -- JSON
-    require('lspconfig').jsonls.setup({
+    vim.lsp.config('jsonls', {
       capabilities = capabilities,
       settings = {
         json = {
@@ -75,20 +60,17 @@ return {
       },
     })
 
-    -- Lua
-    require('lspconfig').lua_ls.setup({
-      settings = {
-        Lua = {
-          runtime = { version = 'LuaJIT' },
-          workspace = {
-            checkThirdParty = false,
-            library = {
-              '${3rd}/luv/library',
-              unpack(vim.api.nvim_get_runtime_file('', true)),
-            },
-          }
-        }
-      }
+
+    vim.lsp.config('gdscript', { capabilities = capabilities })
+
+    vim.lsp.enable({
+      'intelephense',
+      'volar',
+      'ts_ls',
+      'tailwindcss',
+      'jsonls',
+      'lua_ls',
+      'gdscript',
     })
 
     -- Keymaps
@@ -101,17 +83,20 @@ return {
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>')
     vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 
+    -- Diagnostics
     vim.diagnostic.config({
       virtual_text = false,
       float = {
         source = true,
-      }
+      },
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = '',
+          [vim.diagnostic.severity.WARN]  = '',
+          [vim.diagnostic.severity.INFO]  = '',
+          [vim.diagnostic.severity.HINT]  = '',
+        },
+      },
     })
-
-    -- Sign configuration
-    vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
-    vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
-    vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
-    vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
   end,
 }

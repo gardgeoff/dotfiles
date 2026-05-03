@@ -44,9 +44,6 @@ vim.keymap.set('n', '<C-Down>', ':resize -2<CR>')
 vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>')
 vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
 
--- Format file
-vim.keymap.set('n', '<leader>f', ':Format <CR>')
-
 -- Normie file manipulation
 vim.keymap.set('n', '<C-s>', ':up <CR>')
 vim.keymap.set('n', '<C-w>', ':bd <CR>')

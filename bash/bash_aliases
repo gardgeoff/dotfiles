@@ -13,17 +13,6 @@ alias l='ls -CF'
 
 alias cls='clear'
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -45,11 +34,3 @@ alias tms="tmuxinator s"
 alias sail="./vendor/bin/sail"
 alias a="php artisan"
 alias s="sail"
-
-#Windows Navigation
-alias win="cd /mnt/c/Users/gardg" 
-alias desk="cd /mnt/c/Users/gardg/OneDrive/Desktop/"
-alias docs="cd /mnt/c/Users/gardg/Documents"
-
-#Update Packages
-alias supdate="sudo apt-get update && sudo apt-get upgrade"
