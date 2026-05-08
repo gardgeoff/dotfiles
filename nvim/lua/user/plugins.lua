@@ -47,16 +47,11 @@ require('lazy').setup({
   -- Enable * searching with visually selected text.
   { 'nelstrom/vim-visual-star-search' },
 
-  -- Automatically create parent dirs when saving.
-  { 'jessarcher/vim-heritage' },
-
   -- Text objects for HTML attributes.
   { 'whatyouhide/vim-textobj-xmlattr', dependencies = 'kana/vim-textobj-user' },
 
   -- Automatically set the working directory to the project root.
   { import = 'user.plugins.vim-rooter' },
-
-  { import = 'user.plugins.rainbow-delimiters' },
 
   -- Automatically add closing brackets, quotes, etc.plugins
   { 'windwp/nvim-autopairs', config = true },
@@ -112,9 +107,6 @@ require('lazy').setup({
   -- PHP Refactoring Tools
   { import = 'user.plugins.phpactor' },
 
-  -- Project Configuration.
-  -- { import = 'user.plugins.projectionist' },
-
   -- Testing helper
   { import = 'user.plugins.vim-test' },
 
@@ -122,9 +114,6 @@ require('lazy').setup({
 
   -- Colorize Hex Codes
   { import = 'user.plugins.colorizer' },
-
-  -- Show file and LSP context in a bar at the top of the screen.
-  { import = 'user.plugins.barbecue' },
 
   -- Virtual scrollbar
   { import = 'user.plugins.nvim-scrollbar' },

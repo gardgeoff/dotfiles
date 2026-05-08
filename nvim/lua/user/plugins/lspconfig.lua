@@ -26,14 +26,15 @@ return {
     })
 
     vim.lsp.config('volar', {
+      capabilities = capabilities,
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
       end,
-      capabilities = capabilities,
     })
 
     vim.lsp.config('ts_ls', {
+      capabilities = capabilities,
       init_options = {
         plugins = {
           {
@@ -72,6 +73,7 @@ return {
       'lua_ls',
       'gdscript',
     })
+
 
     -- Keymaps
     vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
