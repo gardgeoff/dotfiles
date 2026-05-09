@@ -38,3 +38,6 @@ ln -sf $DOTFILES/bash/bash_colors $HOME/.bash_colors
 # Kitty
 rm -rf $HOME/.config/kitty
 ln -s $DOTFILES/kitty $HOME/.config/kitty
+
+rm -rf $HOME/.config/fish
+ln -s $DOTFILES/fish $HOME/.config/fish
