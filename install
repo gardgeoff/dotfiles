@@ -20,12 +20,6 @@ ln -sf $DOTFILES/lazygit/config.yml $HOME/.config/lazygit/config.yml
 rm -rf $HOME/.config/phpactor
 ln -s $DOTFILES/phpactor $HOME/.config/phpactor
 
-# Scripts
-mkdir -p $HOME/.local/bin
-
-ln -sf $DOTFILES/scripts/t $HOME/.local/bin/t
-ln -sf $DOTFILES/scripts/deliver $HOME/.local/bin/deliver
-
 # NVM (Node Version Manager)
 mkdir -p $HOME/.nvm
 ln -sf $DOTFILES/nvm/default-packages $HOME/.nvm/default-packages

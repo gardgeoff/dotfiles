@@ -5,8 +5,18 @@ vim.g.maplocalleader = ' '
 -- Quickly clear search highlighting.
 vim.keymap.set('n', '<leader>k', ':nohlsearch<CR>')
 
--- Close all open buffers.
-vim.keymap.set('n', '<leader>Q', ':bufdo bdelete<CR>')
+-- Close split if available, otherwise close buffer
+vim.keymap.set('n', '<leader>q', function()
+  if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+    vim.cmd('close')
+  else
+    vim.cmd('bdelete')
+  end
+end, { silent = true })
+
+-- Make splits
+vim.keymap.set('n', '<leader>vs', ':vs<CR>')
+vim.keymap.set('n', '<leader>hs', ':split<CR>')
 
 -- Allow gf to open non-existent files.
 vim.keymap.set('', 'gf', ':edit <cfile><CR>')
@@ -27,7 +37,6 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 -- Paste replace visual selection without copying it.
 vim.keymap.set('v', 'p', '"_dP')
 
-
 -- Easy insertion of trailing ; or , from normal mode
 vim.keymap.set('n', '<leader>;', 'A;<Esc>')
 vim.keymap.set('n', '<leader>,', 'A,<Esc>')
@@ -46,7 +55,6 @@ vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>')
 
 -- Normie file manipulation
 vim.keymap.set('n', '<C-s>', ':up <CR>')
-vim.keymap.set('n', '<C-w>', ':bd <CR>')
 
--- Move text up and down
-vim.keymap.set('n', '<C-i>', ':PhpactorImportClass <CR>')
+-- Comment a paragraph, maintaining cursor position
+vim.keymap.set('n', 'gcap', 'my<cmd>norm vip<bar>gc<cr>`y')

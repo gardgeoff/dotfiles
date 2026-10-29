@@ -4,3 +4,4 @@ vim.cmd([[
     autocmd TermOpen * setlocal nospell
   augroup END
 ]])
+

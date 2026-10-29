@@ -77,6 +77,9 @@ return {
         hide_by_name = {
           '.git',
         },
+        hide_by_pattern = {
+          '*.gd.uid'
+        },
       },
       follow_current_file = {
         enabled = true,

@@ -2,8 +2,8 @@ return {
   'neovim/nvim-lspconfig',
   event = 'VeryLazy',
   dependencies = {
-    'williamboman/mason.nvim',
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
+    'mason-org/mason-lspconfig.nvim',
     'b0o/schemastore.nvim',
   },
   config = function()
@@ -12,20 +12,21 @@ return {
         height = 0.8,
       },
     })
-    require('mason-lspconfig').setup({ automatic_installation = true })
+    -- Only enable the servers listed in vim.lsp.enable() below.
+    require('mason-lspconfig').setup({ automatic_enable = false })
 
     local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
     vim.lsp.config('intelephense', {
       on_attach = function(client, bufnr)
         vim.api.nvim_buf_create_user_command(bufnr, 'IntelephenseIndex', function()
-          vim.lsp.buf.execute_command({ command = 'intelephense.index.workspace' })
+          client:exec_cmd({ title = 'Index workspace', command = 'intelephense.index.workspace' })
         end, {})
       end,
       capabilities = capabilities,
     })
 
-    vim.lsp.config('volar', {
+    vim.lsp.config('vue_ls', {
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
@@ -35,18 +36,20 @@ return {
 
     vim.lsp.config('ts_ls', {
       capabilities = capabilities,
-      init_options = {
-        plugins = {
-          {
-            name = '@vue/typescript-plugin',
-            location = '/usr/local/lib/node_modules/@vue/typescript-plugin',
-            languages = { 'javascript', 'typescript', 'vue' },
-          },
-        },
-      },
       filetypes = {
-        'javascript', 'javascriptreact', 'javascript.jsx',
-        'typescript', 'typescriptreact', 'typescript.tsx', 'vue',
+        'javascript',
+        'javascriptreact',
+        'javascript.jsx',
+        'typescript',
+        'typescriptreact',
+        'typescript.tsx',
+      },
+    })
+    vim.lsp.config('emmet_ls', {
+      capabilities = capabilities,
+      filetypes = {
+        'blade',
+        'html',
       },
     })
 
@@ -61,19 +64,18 @@ return {
       },
     })
 
-
     vim.lsp.config('gdscript', { capabilities = capabilities })
 
     vim.lsp.enable({
       'intelephense',
-      'volar',
+      'vue_ls',
       'ts_ls',
+      'emmet_ls',
       'tailwindcss',
       'jsonls',
       'lua_ls',
       'gdscript',
     })
-
 
     -- Keymaps
     vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>')
@@ -94,9 +96,9 @@ return {
       signs = {
         text = {
           [vim.diagnostic.severity.ERROR] = '',
-          [vim.diagnostic.severity.WARN]  = '',
-          [vim.diagnostic.severity.INFO]  = '',
-          [vim.diagnostic.severity.HINT]  = '',
+          [vim.diagnostic.severity.WARN] = '',
+          [vim.diagnostic.severity.INFO] = '',
+          [vim.diagnostic.severity.HINT] = '',
         },
       },
     })

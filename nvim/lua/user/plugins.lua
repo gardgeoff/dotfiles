@@ -17,14 +17,8 @@ require('lazy').setup({
   -- Theme
   { import = 'user.plugins.slime' },
 
-  -- Commenting support.
-  { import = 'user.plugins.vim-commentary' },
-
   -- Add, change, and delete surrounding text.
   { 'tpope/vim-surround' },
-
-  -- Support for blade directives
-  { 'jwalton512/vim-blade' },
 
   -- Useful commands like :Rename and :SudoWrite.
   { 'tpope/vim-eunuch' },
@@ -44,9 +38,6 @@ require('lazy').setup({
   -- Jump to the last location when opening a file.
   { 'farmergreg/vim-lastplace' },
 
-  -- Enable * searching with visually selected text.
-  { 'nelstrom/vim-visual-star-search' },
-
   -- Text objects for HTML attributes.
   { 'whatyouhide/vim-textobj-xmlattr', dependencies = 'kana/vim-textobj-user' },
 
@@ -58,9 +49,6 @@ require('lazy').setup({
 
   -- Add smooth scrolling to avoid jarring jumps
   { 'karb94/neoscroll.nvim', config = true },
-
-  -- All closing buffers without closing the split window.
-  { import = 'user.plugins.bufdelete' },
 
   -- Split arrays and methods onto multiple lines, or join them back up.
   { import = 'user.plugins.treesj' },
@@ -104,9 +92,6 @@ require('lazy').setup({
   -- Completion
   { import = 'user.plugins.cmp' },
 
-  -- PHP Refactoring Tools
-  { import = 'user.plugins.phpactor' },
-
   -- Testing helper
   { import = 'user.plugins.vim-test' },
 
@@ -121,13 +106,15 @@ require('lazy').setup({
   -- Highlight occurrences of the word under the cursor.
   { import = 'user.plugins.illuminate' },
 
-  -- Color scheme
+  -- Markdown preview
+  { import = 'user.plugins.markview' },
+
+  -- Delimiter coloring based on scope
 }, {
   checker = {
     enabled = true,
     notify = false,
   },
-  easing_function = 'cubic',
   change_detection = {
     notify = false,
   },

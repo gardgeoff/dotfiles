@@ -28,7 +28,7 @@ shopt -s histappend
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
-export PATH="$PATH:/opt/nvim-linux64/bin"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -98,10 +98,9 @@ if ! shopt -oq posix; then
 fi
 
 export PATH="$PATH:$HOME/.config/composer/vendor/bin"
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
 
-export BROWSER=wslview
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+[ -x /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -111,6 +110,3 @@ export PHP_INI_SCAN_DIR="/home/geoff/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 export EDITOR='nvim'
 alias protontricks='flatpak run com.github.Matoking.protontricks'
 alias protontricks-launch='flatpak run --command=protontricks-launch com.github.Matoking.protontricks'
-if [[ $- == *i* ]]; then
-    exec fish
-fi

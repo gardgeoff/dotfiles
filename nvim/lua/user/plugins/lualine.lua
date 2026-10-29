@@ -4,7 +4,6 @@ return {
   -- setup must be called before loading
   lazy = false,
   dependencies = {
-    'arkav/lualine-lsp-progress',
     'nvim-tree/nvim-web-devicons',
   },
   opts = {
