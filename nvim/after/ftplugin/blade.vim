@@ -1,0 +1,42 @@
+" Let matchit's % jump between HTML tags and Blade directive pairs.
+" Blade patterns avoid capturing groups so they don't interfere with matchit backrefs,
+" and use \%x2c for a literal comma since matchit splits b:match_words on commas.
+let b:match_ignorecase = 1
+let b:match_words = join([
+      \ '@if\>:@elseif\>:@else\>:@endif\>',
+      \ '@unless\>:@endunless\>',
+      \ '@forelse\>:@empty\>\%(\s*(\)\@!:@endforelse\>',
+      \ '@foreach\>:@endforeach\>',
+      \ '@for\>:@endfor\>',
+      \ '@while\>:@endwhile\>',
+      \ '@switch\>:@case\>:@default\>:@endswitch\>',
+      \ '@isset\>:@endisset\>',
+      \ '@empty\>\%(\s*(\)\@=:@endempty\>',
+      \ '@auth\>:@elseauth\>:@endauth\>',
+      \ '@guest\>:@elseguest\>:@endguest\>',
+      \ '@can\>:@elsecan\>:@endcan\>',
+      \ '@cannot\>:@elsecannot\>:@endcannot\>',
+      \ '@canany\>:@elsecanany\>:@endcanany\>',
+      \ '@env\>:@endenv\>',
+      \ '@production\>:@endproduction\>',
+      \ '@error\>:@enderror\>',
+      \ '@session\>:@endsession\>',
+      \ '@push\>:@endpush\>',
+      \ '@pushOnce\>:@endPushOnce\>',
+      \ '@prepend\>:@endprepend\>',
+      \ '@once\>:@endonce\>',
+      \ '@fragment\>:@endfragment\>',
+      \ '@component\>:@endcomponent\>',
+      \ '@slot\>:@endslot\>',
+      \ '@verbatim\>:@endverbatim\>',
+      \ '@php\>\%(\s*(\)\@!:@endphp\>',
+      \ '@section\>\%(\s*(\s*[''"][^''"]*[''"]\s*\%x2c\)\@!:\%(@show\|@endsection\|@stop\|@overwrite\|@append\)\>',
+      \ '<!--:-->',
+      \ '<:>',
+      \ '<\@<=x-slot\>[^>]*\%(>\|$\):<\@<=/x-slot>',
+      \ '<\@<=[ou]l\>[^>]*\%(>\|$\):<\@<=li\>:<\@<=/[ou]l>',
+      \ '<\@<=dl\>[^>]*\%(>\|$\):<\@<=d[td]\>:<\@<=/dl>',
+      \ '<\@<=\([^/!][^ \t>]*\)[^>]*\%(>\|$\):<\@<=/\1>',
+      \ ], ',')
+
+let b:undo_ftplugin = get(b:, 'undo_ftplugin', '') .. ' | unlet! b:match_ignorecase b:match_words'

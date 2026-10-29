@@ -1,19 +1,21 @@
 return {
   'petertriho/nvim-scrollbar',
+  branch = 'refactor/v2',
   opts = {
-    -- show_in_active_only = true,
-    excluded_filetypes = {
-      'neo-tree',
+    exclude = {
+      filetypes = { ['neo-tree'] = true },
     },
     marks = {
       Cursor = {
-        text = " ",
+        text = ' ',
         priority = 99,
       },
     },
-    handle = {
-      blend = 90,
-      highlight = "Cursor",
+    scrollbar = {
+      thumb = {
+        blend = 90,
+        highlight = 'Cursor',
+      },
     },
-  }
+  },
 }
