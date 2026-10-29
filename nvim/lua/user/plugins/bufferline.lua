@@ -11,6 +11,8 @@ return {
         icon = ' ',
       },
       show_close_icon = false,
+      close_command = function(buf) require('user.bufdelete')(buf, true) end,
+      right_mouse_command = function(buf) require('user.bufdelete')(buf, true) end,
       tab_size = 0,
       max_name_length = 25,
       offsets = {

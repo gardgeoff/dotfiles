@@ -5,14 +5,32 @@ vim.g.maplocalleader = ' '
 -- Quickly clear search highlighting.
 vim.keymap.set('n', '<leader>k', ':nohlsearch<CR>')
 
--- Close split if available, otherwise close buffer
+-- Close split if available, otherwise close buffer.
+-- Floating windows and neo-tree don't count as splits.
 vim.keymap.set('n', '<leader>q', function()
-  if #vim.api.nvim_tabpage_list_wins(0) > 1 then
+  local function is_split(win)
+    return vim.api.nvim_win_get_config(win).relative == ''
+      and vim.bo[vim.api.nvim_win_get_buf(win)].filetype ~= 'neo-tree'
+  end
+  local splits = vim.tbl_filter(is_split, vim.api.nvim_tabpage_list_wins(0))
+  if #splits > 1 or not is_split(0) then
     vim.cmd('close')
   else
-    vim.cmd('bdelete')
+    require('user.bufdelete')(0)
   end
 end, { silent = true })
+
+-- Make :bd / :bdelete keep the window open too, so neo-tree isn't left filling the screen.
+vim.api.nvim_create_user_command('Bdelete', function(opts)
+  local buf = opts.args == '' and 0 or tonumber(opts.args) or vim.fn.bufnr(opts.args)
+  if buf ~= 0 and not vim.api.nvim_buf_is_valid(buf) then
+    vim.notify('E94: No matching buffer for ' .. opts.args, vim.log.levels.ERROR)
+    return
+  end
+  require('user.bufdelete')(buf, opts.bang)
+end, { bang = true, nargs = '?', complete = 'buffer' })
+vim.cmd([[cnoreabbrev <expr> bd getcmdtype() == ':' && getcmdline() ==# 'bd' ? 'Bdelete' : 'bd']])
+vim.cmd([[cnoreabbrev <expr> bdelete getcmdtype() == ':' && getcmdline() ==# 'bdelete' ? 'Bdelete' : 'bdelete']])
 
 -- Make splits
 vim.keymap.set('n', '<leader>vs', ':vs<CR>')
