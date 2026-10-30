@@ -1,3 +1,7 @@
+-- Neovim ships no commentstring for blade, which breaks gc/gcc. Injected PHP/JS regions
+-- still get their own commentstring from the built-in commenting.
+vim.bo.commentstring = '{{-- %s --}}'
+
 -- gd on <x-component> or on a view name (@include('partials.nav'), @extends, view(), ...)
 -- opens its Blade file; anything else falls back to the LSP definition.
 
@@ -69,4 +73,4 @@ vim.keymap.set('n', 'gd', function()
   end
 end, { buffer = true, desc = 'Go to Blade view/component or LSP definition' })
 
-vim.b.undo_ftplugin = (vim.b.undo_ftplugin or '') .. ' | silent! nunmap <buffer> gd'
+vim.b.undo_ftplugin = (vim.b.undo_ftplugin or '') .. ' | silent! nunmap <buffer> gd | setlocal commentstring<'
